@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Xtb Plumbing offers reliable plumbing services in Bristol. Emergency repairs, installations, drain unblocking & more. Professional local plumbers you can trust.">
-    <title>Xtb Plumbing — Reliable Plumbing Solutions Right Here in Bristol</title>
+    <meta name="description" content="Xtb Plumbing - Professional plumbers services in Bristol. Contact us today.">
+    <title>Xtb Plumbing — Quality Plumbers in Bristol</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script>
@@ -12,265 +12,367 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Inter', 'sans-serif'] },
-                    colors: { brand: '#2563eb' }
+                    colors: { brand: { DEFAULT: '#2563eb', dark: '#2563ebdd' } }
                 }
             }
         }
     </script>
     <style>
         html { scroll-behavior: smooth; }
-        .hero-gradient { background: linear-gradient(135deg, rgba(15,23,42,0.9) 0%, rgba(15,23,42,0.5) 100%); }
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-        .trust-badge { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        
+        /* Animations */
+        .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .fade-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-left.visible { opacity: 1; transform: translateX(0); }
+        .fade-right { opacity: 0; transform: translateX(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-right.visible { opacity: 1; transform: translateX(0); }
+        .scale-in { opacity: 0; transform: scale(0.9); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .scale-in.visible { opacity: 1; transform: scale(1); }
+        
+        /* Stagger children */
+        .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+        .stagger > *:nth-child(2) { transition-delay: 0.1s; }
+        .stagger > *:nth-child(3) { transition-delay: 0.15s; }
+        .stagger > *:nth-child(4) { transition-delay: 0.2s; }
+        .stagger > *:nth-child(5) { transition-delay: 0.25s; }
+        .stagger > *:nth-child(6) { transition-delay: 0.3s; }
+        
+        /* Glassmorphism */
+        .glass { background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.12); }
+        .glass-white { background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.5); }
+        
+        /* Gradient text */
+        .gradient-text { background: linear-gradient(135deg, #2563eb, #2563eb99); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        
+        /* Hover effects */
+        .hover-lift { transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15); }
+        
+        /* Glow effect */
+        .glow { box-shadow: 0 0 40px #2563eb30; }
+        .glow-sm { box-shadow: 0 0 20px #2563eb20; }
+        
+        /* Animated gradient border */
+        @keyframes borderGlow { 0%,100% { border-color: #2563eb40; } 50% { border-color: #2563eb; } }
+        .border-glow { animation: borderGlow 3s ease-in-out infinite; }
+        
+        /* Pulse dot */
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .pulse { animation: pulse 2s ease-in-out infinite; }
+        
+        /* Counter animation */
+        .counter { display: inline-block; }
+        
+        /* FAQ */
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; }
+        .faq-item.open .faq-answer { max-height: 200px; padding-top: 1rem; }
+        .faq-item.open .faq-chevron { transform: rotate(180deg); }
+        .faq-chevron { transition: transform 0.3s ease; }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased">
+<body class="font-sans text-gray-800 antialiased overflow-x-hidden">
 
-    <!-- Top Bar -->
-    <div class="bg-brand text-white text-sm py-2 px-6">
+    <!-- Announcement Bar -->
+    <div class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white text-sm py-2.5 px-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <span class="hidden sm:block">🏆 Trusted Local Professionals in Bristol</span>
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 bg-green-400 rounded-full pulse"></span>
+                <span class="hidden sm:inline">Available Now — Serving Bristol & Surrounding Areas</span>
+                <span class="sm:hidden">Available Now</span>
+            </div>
             
         </div>
     </div>
 
     <!-- Navigation -->
-    <nav class="sticky top-0 w-full z-50 bg-white shadow-sm">
+    <nav class="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-100/80 shadow-sm" id="navbar">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-black text-gray-900">Xtb Plumbing</a>
+            <a href="#" class="text-xl font-extrabold text-gray-900 tracking-tight">
+                <span class="gradient-text">Xtb Plumbing</span>
+            </a>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#services" class="text-gray-600 hover:text-gray-900 transition font-medium">Services</a>
-                <a href="#why-us" class="text-gray-600 hover:text-gray-900 transition font-medium">Why Us</a>
-                <a href="#reviews" class="text-gray-600 hover:text-gray-900 transition font-medium">Reviews</a>
-                <a href="#contact" class="px-6 py-3 bg-brand text-white rounded-lg font-bold hover:opacity-90 transition">Get Your Free Quote Today</a>
+                <a href="#services" class="text-gray-500 hover:text-gray-900 transition text-sm font-medium">Services</a>
+                <a href="#why-us" class="text-gray-500 hover:text-gray-900 transition text-sm font-medium">Why Us</a>
+                <a href="#process" class="text-gray-500 hover:text-gray-900 transition text-sm font-medium">How It Works</a>
+                <a href="#reviews" class="text-gray-500 hover:text-gray-900 transition text-sm font-medium">Reviews</a>
+                <a href="#faq" class="text-gray-500 hover:text-gray-900 transition text-sm font-medium">FAQ</a>
+                <a href="#contact" class="px-6 py-2.5 bg-brand text-white rounded-xl font-semibold hover:opacity-90 transition shadow-md shadow-brand/20 text-sm">Get in Touch</a>
             </div>
-            <button class="md:hidden" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+            <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
             </button>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden border-t px-6 py-4 bg-white">
-            <a href="#services" class="block py-2 font-medium">Services</a>
-            <a href="#why-us" class="block py-2 font-medium">Why Us</a>
-            <a href="#reviews" class="block py-2 font-medium">Reviews</a>
-            <a href="#contact" class="block py-2 font-medium text-brand">Contact</a>
+        <div id="mobile-menu" class="hidden md:hidden border-t px-6 py-4 bg-white space-y-1">
+            <a href="#services" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-brand">Services</a>
+            <a href="#why-us" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-brand">Why Us</a>
+            <a href="#process" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-brand">How It Works</a>
+            <a href="#reviews" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-brand">Reviews</a>
+            <a href="#faq" class="block py-2.5 text-sm font-medium text-gray-700 hover:text-brand">FAQ</a>
+            <a href="#contact" class="block py-2.5 text-sm font-bold text-brand">Contact Us</a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="relative py-20 md:py-32 overflow-hidden">
+    <!-- Hero Section -->
+    <section class="relative min-h-[90vh] flex items-center overflow-hidden">
         
-        <div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-brand"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900"></div>
+        <div class="absolute inset-0 opacity-30" style="background-image: radial-gradient(circle at 20% 50%, #2563eb40 0%, transparent 50%), radial-gradient(circle at 80% 20%, #2563eb20 0%, transparent 50%);"></div>
         
-        <div class="relative z-10 max-w-7xl mx-auto px-6">
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full">
             <div class="max-w-3xl">
                 
-                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-                    Reliable Plumbing Solutions Right Here in Bristol
+                
+                <h1 class="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] fade-up">
+                    Quality Plumbers in Bristol
                 </h1>
-                <p class="text-xl text-white/80 mb-10 max-w-xl font-light">
-                    Xtb Plumbing is your trusted local plumber serving the Bristol community with professional, reliable service. We take pride in delivering quality workmanship and exceptional customer service to every home and business we serve. Our experienced team is committed to solving all your plumbing needs promptly and efficiently.
+                
+                <p class="text-xl text-white/70 mb-10 max-w-xl font-light leading-relaxed fade-up">
+                    Xtb Plumbing is a trusted plumbers business proudly serving Bristol and the surrounding areas. With years of experience, we deliver exceptional quality and outstanding customer service every time.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="px-8 py-4 bg-brand text-white rounded-lg font-bold text-lg hover:opacity-90 transition shadow-lg shadow-brand/30 text-center">
-                        Get Your Free Quote Today →
+                
+                <div class="flex flex-col sm:flex-row gap-4 fade-up">
+                    <a href="#contact" class="group px-8 py-4 bg-brand text-white rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg shadow-brand/30 text-center flex items-center justify-center gap-2">
+                        Get in Touch
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                     </a>
-                    <a href="tel:" class="px-8 py-4 bg-white text-gray-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition text-center">
-                        📞 Call Now
-                    </a>
+                    
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Trust Badges -->
-    <section class="bg-white py-12 px-6 border-b">
-        <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div class="fade-in">
-                <div class="text-3xl mb-2">✅</div>
-                <p class="font-bold text-gray-900">Fully Insured</p>
-                <p class="text-sm text-gray-500">Complete peace of mind</p>
-            </div>
-            <div class="fade-in">
-                <div class="text-3xl mb-2">⚡</div>
-                <p class="font-bold text-gray-900">Fast Response</p>
-                <p class="text-sm text-gray-500">Same-day availability</p>
-            </div>
-            <div class="fade-in">
-                <div class="text-3xl mb-2">💰</div>
-                <p class="font-bold text-gray-900">Free Quotes</p>
-                <p class="text-sm text-gray-500">No obligation</p>
-            </div>
-            <div class="fade-in">
-                <div class="text-3xl mb-2">🏆</div>
-                <p class="font-bold text-gray-900">Guaranteed Work</p>
-                <p class="text-sm text-gray-500">Quality assured</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="py-24 px-6 bg-gray-50">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="text-brand font-bold text-sm uppercase tracking-widest">What We Do</span>
-                <h2 class="text-4xl md:text-5xl font-black mt-3 text-gray-900">Our Services</h2>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <div class="bg-white rounded-xl p-8 border-2 border-transparent hover:border-brand transition-all duration-300 shadow-sm hover:shadow-lg fade-in group">
-                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <svg class="w-7 h-7 text-brand group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384-3.19A1.5 1.5 0 015 10.645V6.838a1.5 1.5 0 01.777-1.316l5.384-3.046a1.5 1.5 0 011.478 0l5.384 3.046A1.5 1.5 0 0119 6.838v3.807a1.5 1.5 0 01-.777 1.316l-5.384 3.19a1.5 1.5 0 01-1.438.02z"/></svg>
+        
+        <!-- Stats overlay -->
+        
+        <div class="absolute bottom-0 left-0 right-0 z-10">
+            <div class="max-w-7xl mx-auto px-6 pb-8">
+                <div class="grid grid-cols-3 gap-4 max-w-2xl">
+                    
+                    <div class="glass rounded-xl px-6 py-4 text-center fade-up">
+                        <div class="text-2xl md:text-3xl font-black text-white">10+</div>
+                        <div class="text-xs text-white/50 uppercase tracking-wider mt-1">Years Experience</div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Emergency Plumbing</h3>
-                    <p class="text-gray-500">Expert emergency plumbing services across Bristol.</p>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 border-2 border-transparent hover:border-brand transition-all duration-300 shadow-sm hover:shadow-lg fade-in group">
-                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <svg class="w-7 h-7 text-brand group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384-3.19A1.5 1.5 0 015 10.645V6.838a1.5 1.5 0 01.777-1.316l5.384-3.046a1.5 1.5 0 011.478 0l5.384 3.046A1.5 1.5 0 0119 6.838v3.807a1.5 1.5 0 01-.777 1.316l-5.384 3.19a1.5 1.5 0 01-1.438.02z"/></svg>
+                    
+                    <div class="glass rounded-xl px-6 py-4 text-center fade-up">
+                        <div class="text-2xl md:text-3xl font-black text-white">500+</div>
+                        <div class="text-xs text-white/50 uppercase tracking-wider mt-1">Happy Customers</div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Bathroom Installation & Refurbishment</h3>
-                    <p class="text-gray-500">Expert bathroom installation & refurbishment services across Bristol.</p>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 border-2 border-transparent hover:border-brand transition-all duration-300 shadow-sm hover:shadow-lg fade-in group">
-                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <svg class="w-7 h-7 text-brand group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384-3.19A1.5 1.5 0 015 10.645V6.838a1.5 1.5 0 01.777-1.316l5.384-3.046a1.5 1.5 0 011.478 0l5.384 3.046A1.5 1.5 0 0119 6.838v3.807a1.5 1.5 0 01-.777 1.316l-5.384 3.19a1.5 1.5 0 01-1.438.02z"/></svg>
+                    
+                    <div class="glass rounded-xl px-6 py-4 text-center fade-up">
+                        <div class="text-2xl md:text-3xl font-black text-white">100%</div>
+                        <div class="text-xs text-white/50 uppercase tracking-wider mt-1">Satisfaction Rate</div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Kitchen Plumbing</h3>
-                    <p class="text-gray-500">Expert kitchen plumbing services across Bristol.</p>
+                    
                 </div>
-                
-                <div class="bg-white rounded-xl p-8 border-2 border-transparent hover:border-brand transition-all duration-300 shadow-sm hover:shadow-lg fade-in group">
-                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <svg class="w-7 h-7 text-brand group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384-3.19A1.5 1.5 0 015 10.645V6.838a1.5 1.5 0 01.777-1.316l5.384-3.046a1.5 1.5 0 011.478 0l5.384 3.046A1.5 1.5 0 0119 6.838v3.807a1.5 1.5 0 01-.777 1.316l-5.384 3.19a1.5 1.5 0 01-1.438.02z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Boiler Repair & Installation</h3>
-                    <p class="text-gray-500">Expert boiler repair & installation services across Bristol.</p>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 border-2 border-transparent hover:border-brand transition-all duration-300 shadow-sm hover:shadow-lg fade-in group">
-                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <svg class="w-7 h-7 text-brand group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384-3.19A1.5 1.5 0 015 10.645V6.838a1.5 1.5 0 01.777-1.316l5.384-3.046a1.5 1.5 0 011.478 0l5.384 3.046A1.5 1.5 0 0119 6.838v3.807a1.5 1.5 0 01-.777 1.316l-5.384 3.19a1.5 1.5 0 01-1.438.02z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Leak Detection & Repair</h3>
-                    <p class="text-gray-500">Expert leak detection & repair services across Bristol.</p>
-                </div>
-                
-                <div class="bg-white rounded-xl p-8 border-2 border-transparent hover:border-brand transition-all duration-300 shadow-sm hover:shadow-lg fade-in group">
-                    <div class="w-14 h-14 bg-brand/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand group-hover:text-white transition">
-                        <svg class="w-7 h-7 text-brand group-hover:text-white transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.42 15.17l-5.384-3.19A1.5 1.5 0 015 10.645V6.838a1.5 1.5 0 01.777-1.316l5.384-3.046a1.5 1.5 0 011.478 0l5.384 3.046A1.5 1.5 0 0119 6.838v3.807a1.5 1.5 0 01-.777 1.316l-5.384 3.19a1.5 1.5 0 01-1.438.02z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Drain Unblocking</h3>
-                    <p class="text-gray-500">Expert drain unblocking services across Bristol.</p>
-                </div>
-                
             </div>
         </div>
+        
     </section>
 
-    <!-- Why Choose Us -->
+    <!-- Why Us Section -->
     <section id="why-us" class="py-24 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
             <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="fade-in">
-                    <span class="text-brand font-bold text-sm uppercase tracking-widest">Why Choose Us</span>
-                    <h2 class="text-4xl md:text-5xl font-black mt-3 mb-8 text-gray-900">
-                        Bristol's Trusted<br>Plumbers
+                <div class="fade-left">
+                    <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand rounded-full text-xs font-bold uppercase tracking-wider mb-6">Why Choose Us</span>
+                    <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
+                        Your Trusted Local Plumbers
                     </h2>
-                    <div class="space-y-6">
-                        <div class="flex gap-4">
-                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">Local & Reliable</h3>
-                                <p class="text-gray-500">Based right here in Bristol, we know the area and care about our reputation.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">Competitive Pricing</h3>
-                                <p class="text-gray-500">Fair, transparent pricing with no hidden costs. Free quotes on all work.</p>
-                            </div>
-                        </div>
-                        <div class="flex gap-4">
-                            <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="font-bold text-gray-900">Satisfaction Guaranteed</h3>
-                                <p class="text-gray-500">We don't leave until you're happy. That's our promise.</p>
-                            </div>
-                        </div>
-                    </div>
+                    <p class="text-lg text-gray-500 leading-relaxed mb-8">
+                        Xtb Plumbing is a trusted plumbers business proudly serving Bristol and the surrounding areas. With years of experience, we deliver exceptional quality and outstanding customer service every time.
+                    </p>
+                    <a href="#contact" class="inline-flex items-center gap-2 text-brand font-bold hover:gap-3 transition-all">
+                        Get in Touch
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
                 </div>
-                <div class="fade-in">
-                    <div class="bg-gradient-to-br from-brand to-brand/80 rounded-2xl p-12 text-white text-center">
-                        <div class="text-6xl font-black mb-2">5.0</div>
-                        <div class="flex text-yellow-300 text-2xl justify-center mb-4">★★★★★</div>
-                        <p class="text-white/80 text-lg">Average Google Rating</p>
-                        <div class="mt-8 pt-8 border-t border-white/20">
-                            <div class="text-4xl font-black">50+</div>
-                            <p class="text-white/80">Happy Customers</p>
+                <div class="grid grid-cols-2 gap-4 stagger fade-right">
+                    
+                    <div class="hover-lift bg-gray-50 rounded-2xl p-6 border border-gray-100 scale-in">
+                        <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                         </div>
+                        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Local & Trusted</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Proudly serving the Bristol community.</p>
                     </div>
+                    
+                    <div class="hover-lift bg-gray-50 rounded-2xl p-6 border border-gray-100 scale-in">
+                        <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Quality Guaranteed</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">We stand behind every job we do.</p>
+                    </div>
+                    
+                    <div class="hover-lift bg-gray-50 rounded-2xl p-6 border border-gray-100 scale-in">
+                        <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Fair Pricing</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Transparent quotes with no hidden costs.</p>
+                    </div>
+                    
+                    <div class="hover-lift bg-gray-50 rounded-2xl p-6 border border-gray-100 scale-in">
+                        <div class="w-10 h-10 bg-brand/10 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        </div>
+                        <h3 class="font-bold text-gray-900 mb-1.5 text-sm">Fast Response</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Quick turnaround when you need us most.</p>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews -->
-    <section id="reviews" class="py-24 px-6 bg-gray-50">
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 bg-gray-50">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 fade-in">
-                <span class="text-brand font-bold text-sm uppercase tracking-widest">Reviews</span>
-                <h2 class="text-4xl md:text-5xl font-black mt-3 text-gray-900">What Customers Say</h2>
+            <div class="text-center mb-16 fade-up">
+                <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand rounded-full text-xs font-bold uppercase tracking-wider mb-4">Our Services</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900">What We Do</h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 stagger">
                 
-                <div class="bg-white rounded-xl p-8 shadow-sm border fade-in">
-                    <div class="flex text-yellow-400 text-lg mb-4">★★★★★</div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">"Quick and professional service. Fixed my leaky pipe in no time!"</p>
-                    <div class="flex items-center gap-3 pt-4 border-t">
-                        <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center">
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-gray-100 group scale-in">
+                    <div class="text-3xl mb-4">⭐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition">Professional Service</h3>
+                    <p class="text-gray-500 leading-relaxed text-sm">Expert service tailored to your needs.</p>
+                </div>
+                
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-gray-100 group scale-in">
+                    <div class="text-3xl mb-4">💬</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition">Consultation</h3>
+                    <p class="text-gray-500 leading-relaxed text-sm">Free advice and assessment to get you started.</p>
+                </div>
+                
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-gray-100 group scale-in">
+                    <div class="text-3xl mb-4">✅</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition">Quality Solutions</h3>
+                    <p class="text-gray-500 leading-relaxed text-sm">Premium solutions that stand the test of time.</p>
+                </div>
+                
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-gray-100 group scale-in">
+                    <div class="text-3xl mb-4">🤝</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition">Ongoing Support</h3>
+                    <p class="text-gray-500 leading-relaxed text-sm">We're here whenever you need us.</p>
+                </div>
+                
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-gray-100 group scale-in">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition">Emergency Service</h3>
+                    <p class="text-gray-500 leading-relaxed text-sm">Available when it matters most.</p>
+                </div>
+                
+                <div class="hover-lift bg-white rounded-2xl p-8 border border-gray-100 group scale-in">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand transition">Custom Work</h3>
+                    <p class="text-gray-500 leading-relaxed text-sm">Bespoke solutions for unique requirements.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    
+    <section id="process" class="py-24 px-6 bg-white">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand rounded-full text-xs font-bold uppercase tracking-wider mb-4">Simple Process</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900">How It Works</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 relative">
+                <!-- Connecting line -->
+                <div class="hidden md:block absolute top-16 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-brand/20 via-brand to-brand/20"></div>
+                
+                
+                <div class="relative text-center fade-up">
+                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-black mx-auto mb-6 shadow-lg shadow-brand/20 glow-sm relative z-10">
+                        1
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Get in Touch</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Contact us to discuss your requirements.</p>
+                </div>
+                
+                <div class="relative text-center fade-up">
+                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-black mx-auto mb-6 shadow-lg shadow-brand/20 glow-sm relative z-10">
+                        2
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Free Quote</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">We'll provide a transparent, no-obligation quote.</p>
+                </div>
+                
+                <div class="relative text-center fade-up">
+                    <div class="w-14 h-14 bg-brand text-white rounded-2xl flex items-center justify-center text-xl font-black mx-auto mb-6 shadow-lg shadow-brand/20 glow-sm relative z-10">
+                        3
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Job Done</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Professional work completed to the highest standard.</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Social Proof / Reviews -->
+    <section id="reviews" class="py-24 px-6 bg-gray-900 text-white relative overflow-hidden">
+        <!-- Background glow -->
+        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 50% 0%, #2563eb40 0%, transparent 60%);"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16 fade-up">
+                <span class="inline-block px-4 py-1.5 bg-white/10 text-white rounded-full text-xs font-bold uppercase tracking-wider mb-4">Customer Reviews</span>
+                <h2 class="text-4xl md:text-5xl font-black">What People Say</h2>
+                
+            </div>
+            <div class="grid md:grid-cols-3 gap-6 stagger">
+                
+                <div class="glass rounded-2xl p-8 hover-lift scale-in">
+                    <div class="flex text-amber-400 text-sm mb-4">★★★★★</div>
+                    <p class="text-white/80 leading-relaxed mb-6">"Absolutely brilliant service from Xtb Plumbing. Professional from start to finish. Would highly recommend!"</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand/60 rounded-full flex items-center justify-center shadow-lg">
                             <span class="text-white font-bold text-sm">S</span>
                         </div>
                         <div>
-                            <p class="font-bold text-gray-900">Sarah M.</p>
-                            <p class="text-sm text-gray-400">Verified Customer</p>
+                            <p class="font-bold text-white text-sm">Sarah M.</p>
+                            
+                            <p class="text-white/40 text-xs">General</p>
+                            
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-xl p-8 shadow-sm border fade-in">
-                    <div class="flex text-yellow-400 text-lg mb-4">★★★★★</div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">"Very reasonable prices and excellent workmanship. Highly recommend Xtb Plumbing."</p>
-                    <div class="flex items-center gap-3 pt-4 border-t">
-                        <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center">
+                <div class="glass rounded-2xl p-8 hover-lift scale-in">
+                    <div class="flex text-amber-400 text-sm mb-4">★★★★★</div>
+                    <p class="text-white/80 leading-relaxed mb-6">"Reliable, professional, and great value for money. Will definitely be using again in the future."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand/60 rounded-full flex items-center justify-center shadow-lg">
                             <span class="text-white font-bold text-sm">J</span>
                         </div>
                         <div>
-                            <p class="font-bold text-gray-900">James T.</p>
-                            <p class="text-sm text-gray-400">Verified Customer</p>
+                            <p class="font-bold text-white text-sm">James T.</p>
+                            
+                            <p class="text-white/40 text-xs">General</p>
+                            
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white rounded-xl p-8 shadow-sm border fade-in">
-                    <div class="flex text-yellow-400 text-lg mb-4">★★★★</div>
-                    <p class="text-gray-600 mb-6 leading-relaxed">"Great communication throughout and the job was done to a high standard."</p>
-                    <div class="flex items-center gap-3 pt-4 border-t">
-                        <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center">
+                <div class="glass rounded-2xl p-8 hover-lift scale-in">
+                    <div class="flex text-amber-400 text-sm mb-4">★★★★</div>
+                    <p class="text-white/80 leading-relaxed mb-6">"Friendly team and excellent results. Really happy with the whole experience from first call to completion."</p>
+                    <div class="flex items-center gap-3 pt-4 border-t border-white/10">
+                        <div class="w-10 h-10 bg-gradient-to-br from-brand to-brand/60 rounded-full flex items-center justify-center shadow-lg">
                             <span class="text-white font-bold text-sm">E</span>
                         </div>
                         <div>
-                            <p class="font-bold text-gray-900">Emily R.</p>
-                            <p class="text-sm text-gray-400">Verified Customer</p>
+                            <p class="font-bold text-white text-sm">Emma R.</p>
+                            
+                            <p class="text-white/40 text-xs">General</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -279,66 +381,172 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="py-20 px-6 bg-brand text-white">
-        <div class="max-w-4xl mx-auto text-center fade-in">
-            <h2 class="text-4xl md:text-5xl font-black mb-6">Need a Plumbers?</h2>
-            <p class="text-xl text-white/80 mb-10">Get your free, no-obligation quote today.</p>
+    <!-- FAQ Section -->
+    
+    <section id="faq" class="py-24 px-6 bg-white">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand rounded-full text-xs font-bold uppercase tracking-wider mb-4">FAQ</span>
+                <h2 class="text-4xl md:text-5xl font-black text-gray-900">Common Questions</h2>
+            </div>
+            <div class="space-y-3 fade-up">
+                
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden hover:border-brand/30 transition cursor-pointer" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between p-6">
+                        <h3 class="font-semibold text-gray-900 pr-4">What areas do you cover?</h3>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-gray-500 leading-relaxed">We cover Bristol and all surrounding areas within a 20-mile radius.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden hover:border-brand/30 transition cursor-pointer" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between p-6">
+                        <h3 class="font-semibold text-gray-900 pr-4">Do you offer free quotes?</h3>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-gray-500 leading-relaxed">Yes, all our quotes are completely free and come with no obligation.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden hover:border-brand/30 transition cursor-pointer" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between p-6">
+                        <h3 class="font-semibold text-gray-900 pr-4">Are you fully insured?</h3>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-gray-500 leading-relaxed">Yes, we are fully insured for your complete peace of mind.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-gray-200 rounded-xl overflow-hidden hover:border-brand/30 transition cursor-pointer" onclick="this.classList.toggle('open')">
+                    <div class="flex items-center justify-between p-6">
+                        <h3 class="font-semibold text-gray-900 pr-4">How quickly can you start?</h3>
+                        <svg class="faq-chevron w-5 h-5 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+                    <div class="faq-answer px-6 pb-6">
+                        <p class="text-gray-500 leading-relaxed">We aim to respond to all enquiries within 24 hours and can often start work the same week.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6 bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-30" style="background: radial-gradient(circle at 50% 50%, #2563eb40 0%, transparent 60%);"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-up">
+            <h2 class="text-4xl md:text-6xl font-black text-white mb-6">Ready to Get Started?</h2>
+            <p class="text-xl text-white/60 mb-10">Get your free, no-obligation quote today. We'll get back to you within the hour.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="px-10 py-4 bg-white text-gray-900 rounded-lg font-bold text-lg hover:bg-gray-100 transition">
-                    Get Your Free Quote Today
+                <a href="#contact" class="group px-10 py-5 bg-brand text-white rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg shadow-brand/30 flex items-center justify-center gap-2">
+                    Get in Touch
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                 </a>
                 
             </div>
         </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact" class="py-24 px-6 bg-white">
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-gray-50">
         <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-16">
-                <div class="fade-in">
-                    <span class="text-brand font-bold text-sm uppercase tracking-widest">Contact</span>
-                    <h2 class="text-4xl font-black mt-3 mb-8 text-gray-900">Get Your Free Quote</h2>
-                    <form class="space-y-4">
-                        <input type="text" placeholder="Your Name" class="w-full px-5 py-4 rounded-lg border-2 border-gray-200 focus:border-brand outline-none transition">
-                        <input type="tel" placeholder="Phone Number" class="w-full px-5 py-4 rounded-lg border-2 border-gray-200 focus:border-brand outline-none transition">
-                        <input type="email" placeholder="Email Address" class="w-full px-5 py-4 rounded-lg border-2 border-gray-200 focus:border-brand outline-none transition">
-                        <textarea rows="4" placeholder="Describe the work needed" class="w-full px-5 py-4 rounded-lg border-2 border-gray-200 focus:border-brand outline-none transition resize-none"></textarea>
-                        <button type="submit" class="w-full py-4 bg-brand text-white rounded-lg font-bold text-lg hover:opacity-90 transition">
-                            Get Free Quote →
-                        </button>
-                    </form>
-                </div>
-                <div class="fade-in space-y-8 pt-12">
+            <div class="grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-2 fade-left">
+                    <span class="inline-block px-4 py-1.5 bg-brand/10 text-brand rounded-full text-xs font-bold uppercase tracking-wider mb-6">Contact Us</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-gray-900 mb-8">Get Your Free Quote</h2>
                     
-                    
-                    
-                    <div class="bg-brand/5 rounded-xl p-6 mt-8">
-                        <p class="font-bold text-gray-900 mb-2">⏰ Working Hours</p>
-                        <p class="text-gray-600">Mon - Fri: 8:00 AM - 6:00 PM</p>
-                        <p class="text-gray-600">Sat: 9:00 AM - 4:00 PM</p>
-                        <p class="text-gray-600">Sun: Emergency only</p>
+                    <div class="space-y-6 mb-10">
+                        
+                        
+                        
                     </div>
+
+                    <div class="bg-brand/5 rounded-2xl p-6 border border-brand/10">
+                        <p class="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-brand" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            Working Hours
+                        </p>
+                        <div class="text-sm text-gray-600 space-y-1">
+                            <p>Mon - Fri: 8:00 AM - 6:00 PM</p>
+                            <p>Saturday: 9:00 AM - 4:00 PM</p>
+                            <p>Sunday: Emergency calls only</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-3 fade-right">
+                    <form class="bg-white rounded-2xl p-8 shadow-xl shadow-gray-200/50 border border-gray-100 space-y-5">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Name</label>
+                                <input type="text" placeholder="Your name" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/10 outline-none transition text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Phone</label>
+                                <input type="tel" placeholder="Your phone" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/10 outline-none transition text-sm">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Email</label>
+                            <input type="email" placeholder="Your email" class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/10 outline-none transition text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Describe the work needed</label>
+                            <textarea rows="4" placeholder="Tell us about your project..." class="w-full px-4 py-3.5 rounded-xl border border-gray-200 focus:border-brand focus:ring-2 focus:ring-brand/10 outline-none transition resize-none text-sm"></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 bg-brand text-white rounded-xl font-bold text-lg hover:opacity-90 transition shadow-lg shadow-brand/20 flex items-center justify-center gap-2">
+                            Get in Touch
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </button>
+                        <p class="text-xs text-gray-400 text-center">We'll respond within 1 hour during business hours.</p>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-12 px-6">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-xl font-black text-white">Xtb Plumbing</p>
-            <p class="text-sm">© 2026 Xtb Plumbing. All rights reserved.</p>
-            <p class="text-xs">Website by <a href="#" class="text-brand hover:underline">WebGen</a></p>
+    <footer class="bg-gray-900 text-gray-400 py-16 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <p class="text-xl font-black text-white mb-1">Xtb Plumbing</p>
+                    <p class="text-sm">Proudly serving Bristol & surrounding areas</p>
+                </div>
+                <div class="flex items-center gap-6 text-sm">
+                    <a href="#services" class="hover:text-white transition">Services</a>
+                    <a href="#reviews" class="hover:text-white transition">Reviews</a>
+                    <a href="#contact" class="hover:text-white transition">Contact</a>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs">&copy; 2026 Xtb Plumbing. All rights reserved.</p>
+                <p class="text-xs">Website by <a href="#" class="text-brand hover:underline">WebGen</a></p>
+            </div>
         </div>
     </footer>
 
+    <!-- Scroll Animations -->
     <script>
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in').forEach(el => observer.observe(el));
+        
+        // Mobile menu close on link click
+        document.querySelectorAll('#mobile-menu a').forEach(a => {
+            a.addEventListener('click', () => document.getElementById('mobile-menu').classList.add('hidden'));
+        });
     </script>
 </body>
 </html>
